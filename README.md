@@ -14,6 +14,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+<--> 
+If there are any errors starting the web server, make sure react is installed.
+### `npm i react`
+node_modules is not uploaded so this is most likely the case. 
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
