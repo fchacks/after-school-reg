@@ -17,7 +17,8 @@ You will also see any lint errors in the console.
 -------------------
 If there are any errors starting the web server, make sure react is installed.
 ### `npm i react`
-node_modules is not uploaded so this is most likely the case. 
+node_modules is not uploaded so this is most likely the case.
+
 -------------------
 
 ### `npm test`
