@@ -2,13 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Current Features
+## Current Features/Description
 
-- Authentication with email and password supported and linked with firebase db
-- Google Auth works as well 
+- Frontend with React.js and backend is Google Firebase
+- Authentication with email and password supported and linked with Firebase
+- Google Auth works as well
 
-# Future Features
-- 
+## Future Features
+- All necessary features can be found [here](https://github.com/fchacks/after-school-reg/wiki/User-Stories).
 
 ## Available Scripts
 
