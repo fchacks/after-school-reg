@@ -5,6 +5,7 @@ import {Link, useHistory} from "react-router-dom"
 import firebase from "firebase/app";
 import "firebase/auth";
 
+
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -12,6 +13,25 @@ export default function Login() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory()
+    const auth = firebase.auth();
+    const signInWithGoogle = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
+    async function handleGoogleSubmit(e){
+        e.preventDefault()
+
+        try {
+            setError("")
+            setLoading(true)
+            await signInWithGoogle();
+            history.push("/")
+
+
+        }
+        catch{
+            setError("Failed to log in.")
+        }
+        setLoading(false)
+    }
 
 
 
@@ -31,6 +51,7 @@ export default function Login() {
         setLoading(false)
 
     }
+
 
 
     
@@ -53,10 +74,22 @@ export default function Login() {
                         </Form.Group>
                         
                         <Button disabled = {loading} className = "w-100" type = "submit">Login</Button>
+
                     </Form>
                     <div className = "w-100 text-center mt-3">
                         <Link to = '/forgot-password'>Forgot password?</Link>
                     </div>
+                    
+                        <p>
+                        <hr/>
+                        </p>
+
+
+                        {/* Google Submit. */}
+                        <a id="google-button" class="btn btn-block btn-social btn-google" type = "submit" onClick = {handleGoogleSubmit}
+                        disabled = {loading}>
+                                <i class="fa fa-google"></i> Log in with Google
+                        </a>
                 </Card.Body>
 
             </Card>
