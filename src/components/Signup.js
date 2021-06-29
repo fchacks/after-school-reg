@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react'
 import {Form, Button, Card,Alert} from 'react-bootstrap'
 import {useAuth} from "../contexts/AuthContext"
 import {Link, useHistory} from "react-router-dom"
+import firebase from 'firebase/app';
 
 export default function Signup() {
     const emailRef = useRef();
@@ -11,6 +12,9 @@ export default function Signup() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+
+    const auth = firebase.auth();
+    const signInWithGoogle = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -31,6 +35,24 @@ export default function Signup() {
         }
         setLoading(false)
 
+    }
+
+
+    async function handleGoogleSubmit(e){
+        e.preventDefault()
+
+        try {
+            setError("")
+            setLoading(true)
+            await signInWithGoogle();
+            history.push("/")
+
+
+        }
+        catch{
+            setError("Failed to create account.")
+        }
+        setLoading(false)
     }
 
     return (
@@ -56,6 +78,19 @@ export default function Signup() {
                         </Form.Group>
                         
                         <Button disabled = {loading} className = "w-100" type = "submit">Sign up</Button>
+
+                                    <p>
+                                    <hr/>
+                                    </p>
+
+
+                        {/* <button onClick={signInWithGoogle} className = 'w-100' type = "submit">Sign up with Google</button> */}
+                        <a id="google-button" class="btn btn-block btn-social btn-google" type = "submit" onClick = {handleGoogleSubmit}
+                        disabled = {loading}>
+                                <i class="fa fa-google"></i> Sign up with Google
+                        </a>
+
+
                     </Form>
                 </Card.Body>
             </Card>

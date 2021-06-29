@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute'
 import ForgotPassword from './components/ForgotPassword'
 import UpdateProfile from './components/UpdateProfile'
 
+
 function App() {
   return (
       <Container className = "d-flex align-items-center justify-content-center"
