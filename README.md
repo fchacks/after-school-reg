@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Current Features
+
+- Authentication with email and password supported and linked with firebase db
+- Google Auth works as well 
+
+# Future Features
+- 
+
 ## Available Scripts
 
 In the project directory, you can run:
