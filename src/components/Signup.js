@@ -3,6 +3,7 @@ import {Form, Button, Card,Alert} from 'react-bootstrap'
 import {useAuth} from "../contexts/AuthContext"
 import {Link, useHistory} from "react-router-dom"
 import firebase from 'firebase/app';
+import {db} from "../firebase"
 
 export default function Signup() {
     const emailRef = useRef();
