@@ -1,13 +1,29 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 import firebase from "firebase/app";
-import "firebase/auth";
+import "firebase";
+import "firebase/auth"
+
+const functions = firebase.functions();
+
+
+// const adminForm = document.querySelector("input[name = '../components/Dashboard/admin-actions']")
+// adminForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const adminEmail = document.querySelector("#admin-email").value;
+//   const addAdminRole = functions.httpsCallable("addAdminRole");
+//   addAdminRole({ email: adminEmail }).then(result =>{
+//     console.log(result)
+//   })
+// })
 
 const AuthContext = React.createContext()
 
 export function useAuth() {
   return useContext(AuthContext)
 }
+
+
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
