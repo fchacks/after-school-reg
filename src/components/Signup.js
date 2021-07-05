@@ -28,6 +28,10 @@ export default function Signup() {
         try {
             setError("")
             setLoading(true)
+            db.collection("users").add({
+                email: emailRef.current.value,
+                password: passwordRef.current.value, 
+            })
             await signup(emailRef.current.value,passwordRef.current.value)
             history.push("/")
         }
