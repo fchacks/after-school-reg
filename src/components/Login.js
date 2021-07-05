@@ -4,6 +4,7 @@ import {useAuth} from "../contexts/AuthContext"
 import {Link, useHistory} from "react-router-dom"
 import firebase from "firebase/app";
 import "firebase/auth";
+import {db} from "../firebase";
 
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
     const history = useHistory()
     const auth = firebase.auth();
     const signInWithGoogle = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+   // const roleRef = useRef();
 
     async function handleGoogleSubmit(e){
         e.preventDefault()
@@ -44,6 +46,7 @@ export default function Login() {
             setLoading(true)
             await login(emailRef.current.value,passwordRef.current.value)
             history.push("/")
+
         }
         catch {
             setError("Failed to log in.")
