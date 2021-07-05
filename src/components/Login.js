@@ -10,6 +10,7 @@ import {db} from "../firebase";
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const adminRef = useRef();
     const {login} = useAuth(); 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function Login() {
         try {
             setError("")
             setLoading(true)
+
             await signInWithGoogle();
             history.push("/")
 
