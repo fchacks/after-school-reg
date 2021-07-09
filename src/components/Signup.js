@@ -35,7 +35,7 @@ export default function Signup() {
             await signup(emailRef.current.value,passwordRef.current.value)
             history.push("/")
         }
-        catch {
+        catch(e) {
             setError("Failed to create an account.")
         }
         setLoading(false)
@@ -54,14 +54,14 @@ export default function Signup() {
 
 
         }
-        catch{
+        catch(e){
             setError("Failed to create account.")
         }
         setLoading(false)
     }
 
     return (
-        <>
+        <div>
             <Card>
                 <Card.Body>
                     <h2 className = "text-center mb-4"> Sign up </h2>
@@ -104,7 +104,7 @@ export default function Signup() {
             </div>
 
 
-        </>
+        </div>
 
     )
 }

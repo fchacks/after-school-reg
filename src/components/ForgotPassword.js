@@ -22,7 +22,7 @@ export default function ForgotPassword() {
             await resetPassword(emailRef.current.value);
             setMessage("Check your inbox for further instructions.")
         }
-        catch {
+        catch(e){
             setError("Failed to reset password.")
         }
         setLoading(false)
@@ -30,7 +30,7 @@ export default function ForgotPassword() {
     }
 
     return (
-        <>
+        <div>
             <Card>
                 <Card.Body>
                     <h2 className = "text-center mb-4"> Login </h2>
@@ -54,7 +54,7 @@ export default function ForgotPassword() {
             </div>
 
 
-        </>
+        </div>
 
     )
 }

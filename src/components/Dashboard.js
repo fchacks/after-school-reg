@@ -4,6 +4,9 @@ import {useAuth } from '../contexts/AuthContext.js'
 import {Link, useHistory} from "react-router-dom"
 import firebase from "firebase"
 const functions = firebase.functions();
+// import "../assets/vendor/nucleo/css/nucleo.css";
+// import "../assets/vendor/font-awesome/css/font-awesome.min.css";
+// import "../assets/scss/argon-design-system-react.scss";
 
 
 
@@ -36,7 +39,7 @@ export default function Dashboard() {
             await logout();
             history.push("/login")
         }
-        catch{
+        catch(e){
             setError("Failed to log out")
         }
     }
@@ -58,7 +61,7 @@ export default function Dashboard() {
     
 
     return (
-        <>
+        <div>
 
         <Card>
             <Card.Body>
@@ -93,6 +96,6 @@ export default function Dashboard() {
             <Button variant = "link" onClick = {handleLogout}>Log out</Button>
         </div>
 
-        </>
+        </div>
     )
 }
