@@ -1,10 +1,11 @@
 import React, {useRef, useState, Component} from 'react'
 import {Form, Button, Card,Alert} from 'react-bootstrap'
-import {useAuth} from "../contexts/AuthContext"
+import {useAuth} from "../../contexts/AuthContext"
 import {Link, useHistory} from "react-router-dom"
 import firebase from "firebase/app";
 import "firebase/auth";
-import {db} from "../firebase";
+import {db} from "../../firebase";
+import CenteredContainer from "./CenteredContainer"
 
 
 export default function Login() {
@@ -62,7 +63,9 @@ export default function Login() {
     
 
     return (
-        <div>
+
+    <CenteredContainer>
+         <div>
             <Card>
                 <Card.Body>
                     <h2 className = "text-center mb-4"> Log in </h2>
@@ -104,6 +107,9 @@ export default function Login() {
 
 
         </div>
+
+    </CenteredContainer>
+       
 
     )
 }

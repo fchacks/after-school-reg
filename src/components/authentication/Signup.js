@@ -1,9 +1,10 @@
 import React, {useRef, useState} from 'react'
 import {Form, Button, Card,Alert} from 'react-bootstrap'
-import {useAuth} from "../contexts/AuthContext"
+import {useAuth} from "../../contexts/AuthContext"
 import {Link, useHistory} from "react-router-dom"
 import firebase from 'firebase/app';
-import {db} from "../firebase"
+import {firestore} from "../../firebase"
+import CenteredContainer from "./CenteredContainer"
 
 export default function Signup() {
     const emailRef = useRef();
@@ -28,12 +29,19 @@ export default function Signup() {
         try {
             setError("")
             setLoading(true)
-            db.collection("users").add({
-                email: emailRef.current.value,
-                password: passwordRef.current.value, 
-            })
+
+
             await signup(emailRef.current.value,passwordRef.current.value)
+
+
+            //adds a document with the user id into users collection
+            firestore.collection("users").doc(auth.currentUser.uid).set({
+                email: emailRef.current.value,
+            })
+
             history.push("/")
+
+
         }
         catch(e) {
             setError("Failed to create an account.")
@@ -61,7 +69,8 @@ export default function Signup() {
     }
 
     return (
-        <div>
+        <CenteredContainer>
+            <div>
             <Card>
                 <Card.Body>
                     <h2 className = "text-center mb-4"> Sign up </h2>
@@ -105,6 +114,9 @@ export default function Signup() {
 
 
         </div>
+
+        </CenteredContainer>
+        
 
     )
 }

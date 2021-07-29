@@ -1,27 +1,41 @@
 import React from "react";
-import Signup from './components/Signup.js';
+import Signup from './components/authentication/Signup.js';
 import {Container} from "react-bootstrap";
 import { AuthProvider } from "./contexts/AuthContext.js";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
-import Dashboard from "./components/Dashboard"
-import Login from "./components/Login"
-import PrivateRoute from './components/PrivateRoute'
-import ForgotPassword from './components/ForgotPassword'
-import UpdateProfile from './components/UpdateProfile'
+import Profile from "./components/authentication/Profile"
+import Login from "./components/authentication/Login"
+import PrivateRoute from './components/authentication/PrivateRoute'
+import ForgotPassword from './components/authentication/ForgotPassword'
+import UpdateProfile from './components/authentication/UpdateProfile'
+import Dashboard from './components/drive/Dashboard'
+// import {Provider} from 'react-redux'
+// import {createStore, applyMiddleware } from 'redux'
+// import rootReducer from "./redux/reducers"
+// import thunk from 'redux-thunk'
+// const store = createStore(rootReducer, applyMiddleware(thunk))
+//import MainScreen from ''
 
 
 function App() {
   return (
-      <Container className = "d-flex align-items-center justify-content-center"
-        style = {{minHeight: "100vh"}}>
-
-        <div className = 'w-100' style= {{maxWidth: "400px"}}>
-          <Router>
+      <Router>
             <AuthProvider>
 
               <Switch>
-                <PrivateRoute exact path = "/" component = {Dashboard}/>
-                <PrivateRoute exact path = "/update-profile" component = {UpdateProfile}/>
+
+                {/* Other */}
+                <PrivateRoute exact path = '/' component = {Dashboard}/>
+                
+
+                
+
+                {/* Profile */}
+                <PrivateRoute path = "/user" component = {Profile}/>
+                <PrivateRoute path = "/update-profile" component = {UpdateProfile}/>
+
+
+                {/* Auth */}
                 <Route path = "/signup" component = {Signup}/>
                 <Route path = "/login" component =   {Login}/>
                 <Route path = "/forgot-password" component =   {ForgotPassword}/>
@@ -29,8 +43,6 @@ function App() {
 
             </AuthProvider>
           </Router>
-        </div>
-      </Container>
   )
 }
 export default App;
