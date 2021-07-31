@@ -14,8 +14,9 @@ export default function AddClass() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [cost, setCost] = useState("")
-    const [startSessionDate, setStartSessionDate] = useState(new Date());
-    const [endSessionDate, setEndSessionDate] = useState(new Date());
+    const [capacity, setCapacity] = useState("")
+    const [lowGrade, setLowGrade] = useState("")
+    const [highGrade, setHighGrade] = useState("")
     const {currentUser} = useAuth();
 
     function openModal(){
@@ -33,10 +34,15 @@ export default function AddClass() {
         database.classes.add({
             name: name,
             description: description,
-            startSessionDate: startSessionDate,
-            endSessionDate: endSessionDate,
             userId: currentUser.uid,
             createdAt: database.getCurrentTimeStamp(),
+            cost: cost,
+            capacity: capacity,
+            availableSeats: capacity,
+            lowGrade: lowGrade,
+            highGrade: highGrade,
+
+
 
         })
         setName("")
@@ -75,20 +81,6 @@ export default function AddClass() {
                             onChange =  {e => setDescription(e.target.value)}/>
                         </Form.Group>
 
-                        {/* Session Dates */}
-                        <Form.Group>
-                            <Form.Label>
-                                Session Dates
-                            </Form.Label>
-                            <p>Start
-                            <DatePicker selected={startSessionDate} onChange={(date) => setStartSessionDate(date)} />
-                            </p>
-
-                            <p>End 
-                            <DatePicker selected={endSessionDate} onChange={(date) => setEndSessionDate(date)} />
-                            </p>
-                        </Form.Group>
-
                         {/* Cost */}
                         <Form.Group>
                             <Form.Label>
@@ -96,6 +88,28 @@ export default function AddClass() {
                             </Form.Label>
                             <Form.Control type = "number" required value = {cost} 
                             onChange =  {e => setCost(e.target.value)}/>
+                        </Form.Group>
+
+                        {/* Max Capacity */}
+                        <Form.Group>
+                            <Form.Label>
+                                Max Capacity
+                            </Form.Label>
+                            <Form.Control type = "number" required value = {capacity} 
+                            onChange =  {e => setCapacity(e.target.value)}/>
+                        </Form.Group>
+
+                        {/* Grades */}
+                        <Form.Group>
+                            <Form.Label>
+                                Grade Range
+                            </Form.Label>
+                            <p>Low <input type = "number" required value = {lowGrade}
+                            onChange = {e => setLowGrade(e.target.value)}/></p>
+
+                            <p>High <input type = "number" required value = {highGrade}
+                            onChange = {e => setHighGrade(e.target.value)}/></p>
+
                         </Form.Group>
 
                     </Modal.Body>

@@ -9,12 +9,7 @@ import PrivateRoute from './components/authentication/PrivateRoute'
 import ForgotPassword from './components/authentication/ForgotPassword'
 import UpdateProfile from './components/authentication/UpdateProfile'
 import Dashboard from './components/drive/Dashboard'
-// import {Provider} from 'react-redux'
-// import {createStore, applyMiddleware } from 'redux'
-// import rootReducer from "./redux/reducers"
-// import thunk from 'redux-thunk'
-// const store = createStore(rootReducer, applyMiddleware(thunk))
-//import MainScreen from ''
+import ClassSelector from "./components/drive/ClassSelector"
 
 
 function App() {
@@ -26,6 +21,7 @@ function App() {
 
                 {/* Other */}
                 <PrivateRoute exact path = '/' component = {Dashboard}/>
+                <PrivateRoute exact path = '/classes' component = {ClassSelector}/>
                 
 
                 

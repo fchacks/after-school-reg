@@ -5,6 +5,7 @@ import {Link, useHistory} from "react-router-dom"
 import firebase from 'firebase/app';
 import {firestore} from "../../firebase"
 import CenteredContainer from "./CenteredContainer"
+import {database} from '../../firebase'
 
 export default function Signup() {
     const emailRef = useRef();
@@ -37,6 +38,8 @@ export default function Signup() {
             //adds a document with the user id into users collection
             firestore.collection("users").doc(auth.currentUser.uid).set({
                 email: emailRef.current.value,
+                role: "parent",
+                createdAt: database.getCurrentTimeStamp(),
             })
 
             history.push("/")
