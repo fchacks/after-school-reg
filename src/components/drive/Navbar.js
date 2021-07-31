@@ -17,6 +17,12 @@ export default function NavbarComponent() {
                 </Nav.Link>
             </Nav>
 
+            <Nav>
+                <Nav.Link as = {Link} to = "/classes">
+                    Classes
+                </Nav.Link>
+            </Nav>
+
         </Navbar>
         
 

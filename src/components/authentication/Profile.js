@@ -4,12 +4,7 @@ import {useAuth } from '../../contexts/AuthContext.js'
 import {Link, useHistory} from "react-router-dom"
 import firebase from "firebase"
 import CenteredContainer from "./CenteredContainer"
-
-import {connect} from 'react-redux'
-import {bindActionCreators } from 'redux'
-import {fetchUser} from '../../redux/actions/index'
-import {db} from "../../firebase"
-import { listenerCount } from 'events'
+import Navbar from '../drive/Navbar'
 
 //import classList from './Classes.js'
 
@@ -95,7 +90,9 @@ export default function Profile() {
     
 
     return (
-    <CenteredContainer>
+    
+    <div>
+        <Navbar/>
         <div>
 
 <Card>
@@ -105,6 +102,12 @@ export default function Profile() {
         <strong>Email: </strong> {currentUser.email}
         <Link to = "/update-profile" className = "btn btn-primary w-100 mt-3">Update Profile</Link>
     </Card.Body>  
+
+    <Card.Body>
+    <div className = "w-100 text-center mt-2">
+    <Link to = "/" className="btn btn-primary">Dashboard</Link>
+    </div>
+    </Card.Body>
 
 
         {/* Classes subtext */}
@@ -146,9 +149,11 @@ export default function Profile() {
     <Button variant = "link" onClick = {handleLogout}>Log out</Button>
 </div>
 
+
+
 </div>
 
-    </CenteredContainer>
+    </div>
         
     )
 
