@@ -32,6 +32,7 @@ export const firestore = app.firestore();
 export const database = {
     classes: firestore.collection('classes'),
     sessions: firestore.collection("sessions"),
+    users: firestore.collection("users"),
     files: firestore.collection('files'),
     getCurrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp
 }

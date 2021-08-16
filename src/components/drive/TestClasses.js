@@ -45,18 +45,19 @@ export default function TestClasses() {
 
 
     return (
-        <div>
-            <h1>Classes</h1>
+        // <div>
+        //     <h1>Classes</h1>
 
-            {classes.map((class1) => (
-                <div key = {class1.id}>
-                    <h2>{class1.name}</h2>
-                    <p>{class1.description}</p>
+        //     {classes.map((class1) => (
+        //         <div key = {class1.id}>
+        //             <h2>{class1.name}</h2>
+        //             <p>{class1.description}</p>
 
-                </div>
-            ))}
+        //         </div>
+        //     ))}
 
             
-        </div>
+        // </div>
+        classes
     );
 }
