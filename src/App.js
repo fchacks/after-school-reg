@@ -11,6 +11,8 @@ import UpdateProfile from './components/authentication/UpdateProfile'
 import Dashboard from './components/drive/Dashboard'
 import ClassSelector from "./components/drive/ClassSelector"
 
+import IndividualClass from "./components/drive/IndividualClass"
+
 
 function App() {
   return (
@@ -19,9 +21,16 @@ function App() {
 
               <Switch>
 
+                {/* Classes */}
+                <Route path = "/classes" component = {ClassSelector}/>
+                <PrivateRoute path = '/classes-:className' component = {IndividualClass}/>
+
+
+
+
                 {/* Other */}
                 <PrivateRoute exact path = '/' component = {Dashboard}/>
-                <PrivateRoute exact path = '/classes' component = {ClassSelector}/>
+                
                 
 
                 

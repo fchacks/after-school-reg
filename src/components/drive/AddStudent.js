@@ -8,6 +8,7 @@ import FormImpl from 'react-bootstrap/esm/Form'
 import "react-datepicker/dist/react-datepicker.css";
 import { useAuth} from "../../contexts/AuthContext";
 import {firestore} from "../../firebase"
+import Select from 'react-select'
 
 import AddFileButton from "./AddFileButton"
 
@@ -17,6 +18,7 @@ export default function AddStudent() {
     const [open, setOpen] = useState(false)
     const [name, setName] = useState("")
     const [medical, setMedical] = useState("")
+    const [school, setSchool] = useState("")
     const {signup} = useAuth();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -33,6 +35,11 @@ export default function AddStudent() {
         setOpen(false)
     }
 
+    const handleChange = e => {
+        setSchool(e);
+        console.log(e)
+      }
+
     async function handleSubmit(e){
 
         e.preventDefault()
@@ -46,18 +53,38 @@ export default function AddStudent() {
             setError("")
             setLoading(true)
             // await signup(email,password)
-            console.log("email: " + email + "   password: " + password)
+            // console.log("email: " + email + "   password: " + password)
 
             // doc(currentUser.uid).collection("children")
+            //.set({
+                //         "child":docRef.id
+                // }
+                // )
+
+
 
             firestore.collection("users").add({
                 name: name,
                 medical: medical,
-                parentId: currentUser.uid,
+                parentID: currentUser.uid,
                 createdAt: database.getCurrentTimeStamp(),
                 grade: grade,
-                role: "student"
+                role: "student",
+                school: school.label,
             })
+            
+            // .then(
+            //     //Adds the child's id into a collection in the user document, updating the ids doc
+            //     function(docRef){
+            //         console.log("Document written with ID: ", docRef.id);
+            //         firestore.collection("users").doc(currentUser.uid).collection("children").doc(docRef.id).set({
+            //             id: docRef.id,
+            //             name: name,
+            //             school: school.label,
+
+            //         })
+
+            // })
 
         }
         catch(e) {
@@ -68,6 +95,7 @@ export default function AddStudent() {
         //Add users to users collection in firebase
         
         setName("")
+        setMedical("")
         closeModal()
     }
 
@@ -95,34 +123,34 @@ export default function AddStudent() {
                         </Form.Group>
 
                         {/* email */}
-                        <Form.Group>
+                        {/* <Form.Group>
                             <Form.Label>
                             Email
                             </Form.Label>
 
                             <Form.Control type = "textarea" required value = {email} 
                             onChange =  {e => setEmail(e.target.value)}/>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         {/* password */}
-                        <Form.Group>
+                        {/* <Form.Group>
                             <Form.Label>
                             Password
                             </Form.Label>
 
                             <Form.Control type = "password" required value = {password} 
                             onChange =  {e => setPassword(e.target.value)}/>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         {/* Confirm password */}
-                        <Form.Group>
+                        {/* <Form.Group>
                             <Form.Label>
                             Confirm Password
                             </Form.Label>
 
                             <Form.Control type = "password" required value = {passwordConfirm} 
                             onChange =  {e => setPasswordConfirm(e.target.value)}/>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         {/* Grade */}
                         <Form.Group>
@@ -130,7 +158,7 @@ export default function AddStudent() {
                             Grade
                             </Form.Label>
 
-                            <Form.Control type = "integer" required value = {grade} 
+                            <Form.Control type = "number" required value = {grade} 
                             onChange =  {e => setGrade(e.target.value)}/>
                         </Form.Group>
 
@@ -150,6 +178,28 @@ export default function AddStudent() {
                             {/* <Form.Control type = "file" required value = {grade} 
                             onChange =  {e => setGrade(e.target.value)}/> */}
                         </Form.Group>
+
+
+                        {/* School */}
+                        <Form.Group>
+                        <Form.Label>School</Form.Label>
+
+                        <Select value = {school} onChange = {handleChange}
+                        
+                        options = {
+
+                            [{label: 'Fairview' ,id: 'fairview'},
+                            { label: 'Hartwood', id: 'hartwood'},
+                            {  label: "O'Hara", id: 'ohara'},
+                            {  label: "Kerr", id: 'kerr'}]
+
+
+
+                        }>
+                             
+
+                        </Select>
+                    </Form.Group>
                             
 
 

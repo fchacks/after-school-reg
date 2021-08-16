@@ -39,7 +39,8 @@ export default function ClassSelector() {
                 
                 {classes.map((current) => 
 
-                        <center>{current.data().name}</center>
+                        <center>
+                        <Link to = {"classes-" + (current.data().name)} className = "btn-lg">Details</Link>{current.data().name}</center>
                         
                 )}
 

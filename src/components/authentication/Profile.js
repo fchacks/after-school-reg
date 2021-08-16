@@ -103,12 +103,6 @@ export default function Profile() {
         <Link to = "/update-profile" className = "btn btn-primary w-100 mt-3">Update Profile</Link>
     </Card.Body>  
 
-    <Card.Body>
-    <div className = "w-100 text-center mt-2">
-    <Link to = "/" className="btn btn-primary">Dashboard</Link>
-    </div>
-    </Card.Body>
-
 
         {/* Classes subtext */}
         {/* <h2 className = "text-center mb-4"> Classes </h2> */}
